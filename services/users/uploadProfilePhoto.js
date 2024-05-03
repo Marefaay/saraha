@@ -12,7 +12,7 @@ const profilePhoto = async (request, response) => {
     //get image path
     const imagePath = path.join(
       __dirname,
-      `../../ProfilePhotos/${request.file.filename}`
+      `/ProfilePhotos/${request.file.filename}`
     );
     console.log(imagePath);
     //upload to cloudnairy
