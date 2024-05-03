@@ -11,10 +11,10 @@ const profilePhoto = async (request, response) => {
     return response.json({ messsage: "No Image To Upload" });
   } else {
     //get image path
-    const imagePath = express.static(path.join(
+    const imagePath = path.join(
       __dirname,
       `../../ProfilePhotos/${request.file.filename}`
-    ),"ProfilePhotos");
+    );
     console.log(imagePath);
     //upload to cloudnairy
     const upload = await uploadProfilePhotoToCloudnairy(imagePath);
