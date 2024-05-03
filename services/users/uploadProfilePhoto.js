@@ -40,7 +40,7 @@ const profilePhoto = async (request, response) => {
       }
     });
     //delte image from local server
-    fs.unlinkSync(imagePath);
+    // fs.unlinkSync(imagePath);
     //reponse
     return response.json({ message: "You Profile Photo Uploaded Succefully" });
   }
