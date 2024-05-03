@@ -14,6 +14,7 @@ const profilePhoto = async (request, response) => {
       __dirname,
       `../../ProfilePhotos/${request.file.filename}`
     );
+    console.log(imagePath);
     //upload to cloudnairy
     const upload = await uploadProfilePhotoToCloudnairy(imagePath);
     // console.log(upload.secure_url);
