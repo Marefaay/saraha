@@ -1,6 +1,7 @@
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const express=require("express");
 const uploadProfilePhotoToCloudnairy = require("../../utils/uploadProfilePhotoToCloudnairy");
 const removeFromCloudinary=require("../../utils/removeProfilePhotoFromCloudnairy")
 const userModel = require("../../models/user.model");
@@ -10,10 +11,10 @@ const profilePhoto = async (request, response) => {
     return response.json({ messsage: "No Image To Upload" });
   } else {
     //get image path
-    const imagePath = path.join(
+    const imagePath = express.static(path.join(
       __dirname,
-      `/ProfilePhotos/${request.file.filename}`
-    );
+      `../../ProfilePhotos/${request.file.filename}`
+    ),"ProfilePhotos");
     console.log(imagePath);
     //upload to cloudnairy
     const upload = await uploadProfilePhotoToCloudnairy(imagePath);
