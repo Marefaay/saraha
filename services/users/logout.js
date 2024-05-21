@@ -15,7 +15,7 @@ const logout = async (request, response) => {
   request.token = token;
   blacklist.push(request.token);
   console.log(blacklist);
-  response.json({status:"true",,message:"Logged out successfully"});
+  response.json({status:"true",message:"Logged out successfully"});
 };
 
 module.exports = logout;
