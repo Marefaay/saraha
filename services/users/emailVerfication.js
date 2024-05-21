@@ -4,7 +4,7 @@ const emailVerfication = async (request, response) => {
   const { token } = request.params;
   jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decoded) => {
     if (err) {
-      return response.json({ message: "error", err });
+      return response.json({status:"false", message: "error", err });
     }
    
     const user = await userModel.findOne({ email: decoded.email });
@@ -13,9 +13,9 @@ const emailVerfication = async (request, response) => {
         { email: decoded.email },
         { emailConfirm: true }
       );
-      return response.json({ message: "Email Verfied Succefully" });
+      return response.json({status:"true", message: "Email Verfied Succefully" });
     } else {
-      return response.json({ message: "Email Not Found" });
+      return response.json({status:"true", message: "Email Not Found" });
     }
 
   });
