@@ -6,9 +6,9 @@ const deleteMessage = async (request, response) => {
   if (message) {
     const message = await messageModel.deleteOne({ _id: id });
     console.log(message);
-    return response.json({ message: "Message Delted Succefully" });
+    return response.json({status:"true", message: "Message Delted Succefully" });
   } else {
-    return response.json({ message: "No Message To Delte" });
+    return response.json({status:"false", message: "No Message To Delte" });
   }
 };
 module.exports = deleteMessage;
