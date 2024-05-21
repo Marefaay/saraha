@@ -6,13 +6,13 @@ const register = async (request, response) => {
   const { name, email, password, age } = request.body;
   const user = await userModel.findOne({ email });
   if (user) {
-    return response.json({ message: "This User Email Is Already Exist" });
+    return response.json({status:"false", message: "This User Email Is Already Exist" });
   } else {
     // const saltRounds = process.env.SALTROUNDS;
     bcrypt.hash(password, 4, async (err, hash) => {
       if (err) {
         console.log(err);
-        return response.json({ message: "err", err });
+        return response.json({ status:"false",message: "err", err });
       } else {
         // Store hash in your password DB.
         const us = await userModel.insertMany({
@@ -29,7 +29,7 @@ const register = async (request, response) => {
           message: `Hello ${name} Welcome to In Our Saraha Application`,
         });
         console.log(us);
-        return response.json({ message: "You Are Registred Succefully" });
+        return response.json({status:"true", message: "You Are Registred Succefully" });
       }
     });
   }
