@@ -26,8 +26,8 @@ app.use(mongoSanitize())
 ///routes
 app.use("/api/user", require("./apis/user.route"));
 app.use("/api/message", require("./apis/message.route"));
-app.get("/", (req, res) => res.send("Hello World!"));
-app.get("*", (req, res) => res.send("Not Found"));
+app.get("/", (req, res) => res.json({ status:"true",message:"Hello World!"}));
+app.get("*", (req, res) => res.json({status:"false",message:"Not Found"}));
 //Error Handler
 app.use(notFound);
 app.use(errorHandler);
