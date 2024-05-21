@@ -5,6 +5,6 @@ const getMessages = async (request, response) => {
     { userId: request.id },
     { userId: 0, _id: 0, __v: 0 }
   );
-  return response.json({ message: "succes", messages });
+  return response.json({ status:"true",message: "succes", messages });
 };
 module.exports = getMessages;
