@@ -10,7 +10,7 @@ const resetPassword = async (request, response) => {
   console.log(match);
   if (match) {
     if (oldPassword === newPassword) {
-      return response.json({
+      return response.json({status:"false",
         message: " Old Password And New Passowrd Must Be Diffreent",
       });
     }
@@ -19,10 +19,10 @@ const resetPassword = async (request, response) => {
         { _id: request.id },
         { password: hash }
       );
-      return response.json({ message: "Password Updated Succefully" });
+      return response.json({status:"true", message: "Password Updated Succefully" });
     });
   } else {
-    return response.json({ message: "Old Password Incorrect" });
+    return response.json({status:"false", message: "Old Password Incorrect" });
   }
 };
 module.exports = resetPassword;
