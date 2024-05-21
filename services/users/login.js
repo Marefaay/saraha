@@ -5,7 +5,7 @@ const login = async (request, response) => {
   const { email, password } = request.body;
   const user = await userModel.findOne({ email });
   if (!user) {
-    return response.json({ message: ` Email('${email}') Is Not Found` });
+    return response.json({status:"false", message: ` Email('${email}') Is Not Found` });
   } else {
     const match = await bcrypt.compare(password, user.password);
 
@@ -20,13 +20,13 @@ const login = async (request, response) => {
         `${process.env.JWT_SECRET_KEY}`
       );
       if (user.emailConfirm == true) {
-        return response.json({
+        return response.json({status:"true",
           message: `Welcome ${user.name} You Are Loggend Succefully`,
           token,
         });
       } 
       else {
-        return response.json({
+        return response.json({status:"true",
           message: "You Must Verified Your Account First",
         });
       }
@@ -36,7 +36,7 @@ const login = async (request, response) => {
       //     });
       // login
     } else {
-      return response.json({ message: "Password Is Incorrect" });
+      return response.json({status:"false", message: "Password Is Incorrect" });
     }
   }
 };
