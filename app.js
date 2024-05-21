@@ -4,6 +4,7 @@ const rateLimiting = require("express-rate-limit");
 const hpp = require("hpp");
 const helmet = require("helmet");
 const xssClean = require("xss-clean");
+const cors = require('cors')
 const mongoSanitize = require("express-mongo-sanitize");
 require("dotenv").config();
 ///dbConnection
@@ -23,6 +24,7 @@ app.use(hpp());
 app.use(helmet());
 app.use(xssClean());
 app.use(mongoSanitize())
+app.use(cors())
 ///routes
 app.use("/api", require("./apis/user.route"));
 app.use("/api", require("./apis/message.route"));
