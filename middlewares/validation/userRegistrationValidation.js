@@ -32,7 +32,7 @@ const userRegisterValidation = async (request, response, next) => {
     error.details.forEach((msg) => {
       errorsArray.push(msg.message);
     });
-    response.json(errorsArray);
+  response.json({status:"false",message:errorsArray});
   }
 };
 module.exports = userRegisterValidation;
