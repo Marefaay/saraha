@@ -8,7 +8,7 @@ const userModel = require("../../models/user.model");
 const profilePhoto = async (request, response) => {
   const token = request.header("token");
   if (!request.file) {
-    return response.json({ messsage: "No Image To Upload" });
+    return response.json({status:"false", messsage: "No Image To Upload" });
   } else {
     //get image path
     const imagePath = path.join(
@@ -22,7 +22,7 @@ const profilePhoto = async (request, response) => {
     //get user
     jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decoded) => {
       if (err) {
-        return response.json({ message: "Error", err });
+        return response.json({status:"false", message: "Error", err });
       } else {
         const user = await userModel.findById(decoded.userId);
         //delte Old Image
@@ -44,7 +44,7 @@ const profilePhoto = async (request, response) => {
     //delte image from local server
     // fs.unlinkSync(imagePath);
     //reponse
-    return response.json({ message: "You Profile Photo Uploaded Succefully" });
+    return response.json({status:"true", message: "You Profile Photo Uploaded Succefully" });
   }
 };
 module.exports = profilePhoto;
