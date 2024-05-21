@@ -24,8 +24,8 @@ app.use(helmet());
 app.use(xssClean());
 app.use(mongoSanitize())
 ///routes
-app.use("/api/user", require("./apis/user.route"));
-app.use("/api/message", require("./apis/message.route"));
+app.use("/api", require("./apis/user.route"));
+app.use("/api", require("./apis/message.route"));
 app.get("/", (req, res) => res.json({ status:"true",message:"Hello World!"}));
 app.get("*", (req, res) => res.json({status:"false",message:"Not Found"}));
 //Error Handler
