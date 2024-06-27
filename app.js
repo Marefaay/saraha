@@ -4,7 +4,6 @@ const rateLimiting = require("express-rate-limit");
 const hpp = require("hpp");
 const helmet = require("helmet");
 const xssClean = require("xss-clean");
-const cors = require('cors')
 const mongoSanitize = require("express-mongo-sanitize");
 require("dotenv").config();
 ///dbConnection
@@ -24,16 +23,15 @@ app.use(hpp());
 app.use(helmet());
 app.use(xssClean());
 app.use(mongoSanitize())
-app.use(cors())
 ///routes
-app.use("/api", require("./apis/user.route"));
-app.use("/api", require("./apis/message.route"));
-app.get("/", (req, res) => res.json({ status:"true",message:"Hello World!"}));
-app.get("*", (req, res) => res.json({status:"false",message:"Not Found"}));
+app.use("/api/user", require("./apis/user.route"));
+app.use("/api/message", require("./apis/message.route"));
+app.get("/", (req, res) => res.send("Hello World!"));
+app.get("*", (req, res) => res.send("Not Found"));
 //Error Handler
 app.use(notFound);
 app.use(errorHandler);
-const port=process.env.PORT||3000
+const port=process.env.PORT;
 app.listen(port, () =>
   console.log(`Saraha app listening on port ${port}!`)
 );
