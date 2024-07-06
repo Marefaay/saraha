@@ -25,11 +25,7 @@ const register = async (request, response) => {
 
         let token = jwt.sign({ email }, process.env.JWT_SECRET_KEY);
 
-        sendEmail({
-          email,
-          token,
-          message: `Hello ${name} Welcome to In Our Saraha Application`,
-        });
+      
 
         console.log(newUser);
         return response.json({ status: "true", message: "You Are Registered Successfully" });
