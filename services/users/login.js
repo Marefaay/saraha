@@ -19,21 +19,11 @@ const login = async (request, response) => {
         },
         `${process.env.JWT_SECRET_KEY}`
       );
-      if (user.emailConfirm == true) {
-        return response.json({status:"true",
-          message: `Welcome ${user.name} You Are Loggend Succefully`,
-          token,
-        });
-      } 
-      else {
-        return response.json({status:"true",
-          message: "You Must Verified Your Account First",
-        });
-      }
-      // return response.json({
-      //       message: `Welcome ${user.name} You Are Loggend Succefully`,
-      //       token,
-      //     });
+     
+      return response.json({
+            message: `Welcome ${user.name} You Are Loggend Succefully`,
+            token,
+          });
       // login
     } else {
       return response.json({status:"false", message: "Password Is Incorrect" });
